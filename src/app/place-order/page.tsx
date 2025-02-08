@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image"; // Import Next.js Image
 
 type Product = {
     _id: string;
@@ -50,7 +51,15 @@ export default function PlaceOrder() {
                     ) : (
                         cart.map((product) => (
                             <div key={product._id} className="flex items-center justify-between border p-4 rounded-lg shadow-md mb-4">
-                                <img src={product.imageUrl} alt={product.productName} className="w-20 h-20 object-cover rounded-lg" />
+                                <div className="relative w-20 h-20"> {/* Fixed width and height for Next.js Image */}
+                                    <Image 
+                                        src={product.imageUrl} 
+                                        alt={product.productName} 
+                                        layout="fill" 
+                                        objectFit="cover" 
+                                        className="rounded-lg"
+                                    />
+                                </div>
                                 <div className="flex-1 ml-4">
                                     <h2 className="text-lg font-semibold">{product.productName}</h2>
                                     <p className="text-green-600 font-bold">${product.price.toFixed(2)}</p>

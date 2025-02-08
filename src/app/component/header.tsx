@@ -1,52 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { FaBagShopping, FaRegHeart, FaBars } from "react-icons/fa6"; //
-import { sanityFetch } from "@/sanity/lib/fetch";
-import { allproducts } from "@/sanity/lib/queries";
-
-type Product = {
-    _id: string;
-    productName: string;
-    category: string;
-};
+import { FaBagShopping, FaRegHeart, FaBars } from "react-icons/fa6";
 
 export default function Header() {
-    const [searchTerm, setSearchTerm] = useState("");
-    const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
-    const [allProducts, setAllProducts] = useState<Product[]>([]);
-
-    // Fetch all products when the component mounts
-    useEffect(() => {
-        const fetchProducts = async () => {
-            try {
-                const products: Product[] = await sanityFetch(allproducts);
-                setAllProducts(products);
-            } catch (error) {
-                console.error("Error fetching products:", error);
-            }
-        };
-
-        fetchProducts();
-    }, []);
-
-    // Search filter logic
-    useEffect(() => {
-        if (searchTerm.trim() === "") {
-            setFilteredProducts([]);
-            return;
-        }
-
-        const filtered = allProducts.filter(
-            (product) =>
-                product.productName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                product.category.toLowerCase().includes(searchTerm.toLowerCase())
-        );
-        setFilteredProducts(filtered);
-    }, [searchTerm, allProducts]);
-
     return (
         <div>
             <div className="flex text-sm font-medium m-3">
@@ -91,20 +49,17 @@ export default function Header() {
                         </button>
                     </div>
 
-
-                        
-
-                        {/* Wishlist Icon */}
-                        <Link href="/wishlist">
+                    {/* Wishlist Icon */}
+                    <Link href="/wishlist">
                         <FaRegHeart className="text-gray-700 md:w-6 md:h-6 w-5 h-5 cursor-pointer hover:text-black max-w-full h-auto" />
-                        </Link>
-                        {/* Cart Icon */}
-                        <Link href="/cart">
-                            <FaBagShopping className="text-gray-700 md:w-6 md:h-6 w-5 h-5 cursor-pointer hover:text-gray-400 max-w-full h-auto" />
-                        </Link>
-                    </div>
+                    </Link>
+
+                    {/* Cart Icon */}
+                    <Link href="/cart">
+                        <FaBagShopping className="text-gray-700 md:w-6 md:h-6 w-5 h-5 cursor-pointer hover:text-gray-400 max-w-full h-auto" />
+                    </Link>
                 </div>
             </div>
-        
+        </div>
     );
 }

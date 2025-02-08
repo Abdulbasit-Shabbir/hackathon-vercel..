@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { FaChevronDown, FaPhone, FaEnvelope, FaMapMarkerAlt, FaHeadset } from "react-icons/fa";
+import { FaChevronDown, FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 
 export default function HelpPage() {
     const [openIndex, setOpenIndex] = useState<number | null>(null);

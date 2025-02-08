@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image"; // Import next/image
 import { motion } from "framer-motion";
 import { FaHeart, FaShoppingCart, FaTrash } from "react-icons/fa";
 
@@ -73,9 +74,11 @@ export default function Wishlist() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full max-w-4xl mt-6">
                     {wishlist.map((product, index) => (
                         <div key={`${product._id}-${index}`} className="border p-4 rounded-lg shadow-md bg-white">
-                            <img
+                            <Image
                                 src={product.imageUrl}
                                 alt={product.productName}
+                                width={300} // Set a reasonable width
+                                height={200} // Set a reasonable height
                                 className="w-full h-40 object-cover rounded-lg"
                             />
                             <h2 className="text-xl font-semibold mt-2">{product.productName}</h2>

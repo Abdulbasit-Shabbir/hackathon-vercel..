@@ -46,9 +46,9 @@ export default function JoinUs() {
             </label>
           </div>
 
-          {/* Terms of Use */}
+          {/* Terms of Use (Fixed Apostrophe) */}
           <p className="text-xs text-gray-500">
-            By creating an account, you agree to Nike's <span className="underline cursor-pointer">Privacy Policy</span> and <span className="underline cursor-pointer">Terms of Use</span>.
+            By creating an account, you agree to Nike&#39;s <span className="underline cursor-pointer">Privacy Policy</span> and <span className="underline cursor-pointer">Terms of Use</span>.
           </p>
 
           {/* Submit Button */}

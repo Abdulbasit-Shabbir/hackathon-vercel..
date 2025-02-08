@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image"; // ✅ Use next/image for optimization
 import { FaArrowLeft } from "react-icons/fa";
 
 type Product = {
@@ -135,7 +136,15 @@ export default function Checkout() {
                             <div className="space-y-4">
                                 {cart.map((product) => (
                                     <div key={product._id} className="flex items-center justify-between border-b pb-2">
-                                        <img src={product.imageUrl} alt={product.productName} className="w-16 h-16 rounded-lg object-cover" />
+                                        {/* ✅ Replaced <img> with next/image */}
+                                        <Image
+                                            src={product.imageUrl}
+                                            alt={product.productName}
+                                            width={64}  // Set width
+                                            height={64} // Set height
+                                            className="w-16 h-16 rounded-lg object-cover"
+                                            priority={true} // Improves performance
+                                        />
                                         <div className="flex-1 ml-4">
                                             <p className="text-sm font-semibold">{product.productName}</p>
                                             <p className="text-sm text-gray-500">{product.category}</p>
