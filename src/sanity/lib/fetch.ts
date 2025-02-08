@@ -7,8 +7,7 @@ const client = createClient({
     apiVersion: "2023-10-10",
 });
 
-// Correct function syntax
-export async function sanityFetch(query: string, params: any = {}) {
-    return await client.fetch(query, params);
+// Correct function syntax with proper type definition
+export async function sanityFetch<T>(query: string, params: Record<string, unknown> = {}): Promise<T> {
+    return await client.fetch<T>(query, params);
 }
- 
