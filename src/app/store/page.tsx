@@ -4,7 +4,6 @@ import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { allproducts } from "@/sanity/lib/queries";
-import Image from "next/image"; // Import Next.js Image
 import { FaSearch, FaHeart, FaShoppingCart, FaChevronDown } from "react-icons/fa";
 
 type Product = {
@@ -133,18 +132,14 @@ export default function Store() {
                     {filteredProducts.map((product) => (
                         <div key={product._id} className="border p-4 rounded-lg shadow-md hover:shadow-lg transition">
                             {/* Product Image */}
-                            <div className="relative w-full h-58"> {/* Fixed height for Next.js Image */}
-                                <Image 
-                                    src={product.imageUrl} 
-                                    alt={product.productName} 
-                                    layout="fill" 
-                                    objectFit="cover" 
-                                    className="rounded-lg"
-                                />
-                            </div>
+                            <img
+                                src={product.imageUrl}
+                                alt={product.productName}
+                                className="w-full h-58 object-cover rounded-lg mb-4"
+                            />
 
                             {/* Product Name */}
-                            <h2 className="text-xl font-semibold text-black mt-4">{product.productName}</h2>
+                            <h2 className="text-xl font-semibold text-black">{product.productName}</h2>
 
                             {/* Status & Category */}
                             <div className="flex justify-between text-sm text-gray-600 mt-1">
